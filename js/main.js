@@ -18,8 +18,11 @@ function cardAHtml (array) {
 
 const soloLane = document.querySelector("#solo-lane")
 const soloLaneFilter = wildRiftChampions.filter ( ( champion ) => {
-    return champion.rol == "Solo Lane"
+    for (let i = 0; i < champion.rol.length; i++) {
+        if (champion.rol[i] == "Solo Lane"){
+            return champion.rol
+        }
+    }
 } )
 cardAHtml(soloLaneFilter)
 console.log(soloLaneFilter)
-/* Requiere filtrar dentro de un array */
