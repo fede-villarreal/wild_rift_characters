@@ -1,0 +1,23 @@
+/* VARIABLES */
+
+$colorClaro: #f8f9fa;
+$colorOscuro: #212529;
+
+
+/* MAP GET */
+
+$fuentes:(
+    titulo: 'Roboto Condensed',
+    general: 'Open Sans',
+);
+
+
+/* MIXIN */
+
+@mixin flexBase($fd, $fw, $jc) {
+    display: flex;
+    flex-direction: $fd;
+    flex-wrap: $fw;
+    justify-content: $jc;
+
+}

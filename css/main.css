@@ -1,0 +1,66 @@
+/* VARIABLES */
+/* MAP GET */
+/* MIXIN */
+/* RESETEO CSS */
+:root {
+  --bs-link-color: inherit;
+  --bs-link-hover-color: inherit; }
+
+/* Quite el color azul de Bootstrap en los links */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 100%;
+  line-height: 1.4; }
+
+img, picture, video, iframe, figure {
+  max-width: 100%;
+  height: auto; }
+
+p {
+  margin-bottom: 0; }
+
+/* Quita un margen inferior que da Bootstrap en algunos P como links */
+/* ul, ol{
+    list-style: none;
+} */
+a {
+  text-decoration: none; }
+
+form, input, textarea, select, button, label {
+  font-family: inherit;
+  font-size: inherit;
+  hyphens: auto;
+  color: inherit; }
+
+/* ESTRUCTURA BASICA GENERAL */
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  color: #212529;
+  background-color: #f8f9fa;
+  font-size: 1em;
+  min-height: 100vh; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 700;
+  font-style: italic; }
+
+header {
+  background: linear-gradient(30deg, #33c9ff, #2857f0); }
+
+.contenedor {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around; }
