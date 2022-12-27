@@ -14,15 +14,63 @@ function cardAHtml (array) {
         contenedor.appendChild(card)
     });
 }
-/* cardAHtml(wildRiftChampions) */
+cardAHtml(wildRiftChampions)
+
+const filtrarPorRol = ( array, posicion ) => {
+    return array.filter ( ( champion ) => {
+        for (let i = 0; i < champion.rol.length; i++) {
+            if (champion.rol[i] == posicion){
+                return champion.rol
+            }
+        }
+    } )
+}
+
+console.log(filtrarPorRol(wildRiftChampions, "Solo Lane"))
+console.log(filtrarPorRol(wildRiftChampions, "Mid Lane"))
+console.log(filtrarPorRol(wildRiftChampions, "Dragon Lane"))
+console.log(filtrarPorRol(wildRiftChampions, "Support"))
+console.log(filtrarPorRol(wildRiftChampions, "Jungle"))
+
+const removeCards = () => {
+    let allCards = document.querySelectorAll(".card")
+    allCards.forEach ( ( card ) => {
+        card.remove()
+    } )
+}
+
+const allLane = document.querySelector("#all-lane")
+allLane.onclick = () => {
+    removeCards()
+    cardAHtml(wildRiftChampions)
+}
 
 const soloLane = document.querySelector("#solo-lane")
-const soloLaneFilter = wildRiftChampions.filter ( ( champion ) => {
-    for (let i = 0; i < champion.rol.length; i++) {
-        if (champion.rol[i] == "Solo Lane"){
-            return champion.rol
-        }
-    }
-} )
-cardAHtml(soloLaneFilter)
-console.log(soloLaneFilter)
+soloLane.onclick = () => {
+    removeCards()
+    cardAHtml( filtrarPorRol ( wildRiftChampions, "Solo Lane" ) )
+}
+
+const midLane = document.querySelector("#mid-lane")
+midLane.onclick = () => {
+    removeCards()
+    cardAHtml( filtrarPorRol ( wildRiftChampions, "Mid Lane" ) )
+}
+
+const dragonLane = document.querySelector("#dragon-lane")
+dragonLane.onclick = () => {
+    removeCards()
+    cardAHtml( filtrarPorRol ( wildRiftChampions, "Dragon Lane" ) )
+}
+
+const support = document.querySelector("#support")
+support.onclick = () => {
+    removeCards()
+    cardAHtml( filtrarPorRol ( wildRiftChampions, "Support" ) )
+}
+
+const jungle = document.querySelector("#jungle")
+jungle.onclick = () => {
+    removeCards()
+    cardAHtml( filtrarPorRol ( wildRiftChampions, "Jungle" ) )
+}

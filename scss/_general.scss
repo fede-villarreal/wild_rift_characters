@@ -24,10 +24,6 @@ header{
     background: linear-gradient(130deg, hsl(196, 100%, 60%), hsl(226, 87%, 55%))
 }
 
-.text-bg-info{
-    background: linear-gradient(130deg, hsl(196, 100%, 60%), hsl(226, 87%, 55%))
-}
-
 .contenedor{
     @include flexBase(row, wrap, space-around)
 }
