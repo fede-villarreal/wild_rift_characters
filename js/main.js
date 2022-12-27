@@ -22,3 +22,4 @@ const soloLaneFilter = wildRiftChampions.filter ( ( champion ) => {
 } )
 cardAHtml(soloLaneFilter)
 console.log(soloLaneFilter)
+/* Requiere filtrar dentro de un array */
