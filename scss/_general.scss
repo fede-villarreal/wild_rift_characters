@@ -3,10 +3,18 @@
 body {
     font-family: map-get($fuentes, general), sans-serif;
     font-weight: 400;
-    color: $colorOscuro;
-    background-color: $colorClaro;
     font-size: 1em;
     min-height: 100vh;
+}
+
+.modo--claro{
+    color: $colorOscuro;
+    background-color: $colorClaro;
+}
+
+.modo--oscuro{
+    color: $colorClaro;
+    background-color: $colorOscuro;
 }
 
 h1,
@@ -20,10 +28,46 @@ h6 {
     font-style: italic;
 }
 
+h1{
+    max-width: 70%;
+    margin: 0.3rem;
+}
+
 header{
-    background: linear-gradient(130deg, hsl(196, 100%, 60%), hsl(226, 87%, 55%))
+    background: linear-gradient(130deg, hsl(196, 100%, 60%), hsl(226, 87%, 55%));
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    @include flexBase(row, wrap, space-between);
+    align-items: center;
+}
+
+nav{
+    font-family: map-get($fuentes, general), sans-serif;
+    font-size: 1.3em;
+    font-weight: 600;
+    font-style: italic;
+}
+
+#boton--claro__oscuro{
+    width: 2.5rem;
+    height: auto;
+    background-color: inherit;
+    padding: 0.2rem;
+    border-radius: 25%;
+}
+
+.boton__modo--claro{
+    border: 2px solid $colorOscuro;
+}
+
+.boton__modo--oscuro{
+    border: 2px solid $colorClaro;
 }
 
 .contenedor{
     @include flexBase(row, wrap, space-around)
+}
+
+.card{
+    background-color: inherit;
 }

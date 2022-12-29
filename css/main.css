@@ -41,10 +41,16 @@ form, input, textarea, select, button, label {
 body {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
-  color: #212529;
-  background-color: #f8f9fa;
   font-size: 1em;
   min-height: 100vh; }
+
+.modo--claro {
+  color: #212529;
+  background-color: #f8f9fa; }
+
+.modo--oscuro {
+  color: #f8f9fa;
+  background-color: #212529; }
 
 h1,
 h2,
@@ -56,11 +62,44 @@ h6 {
   font-weight: 700;
   font-style: italic; }
 
+h1 {
+  max-width: 70%;
+  margin: 0.3rem; }
+
 header {
-  background: linear-gradient(130deg, #33c9ff, #2857f0); }
+  background: linear-gradient(130deg, #33c9ff, #2857f0);
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center; }
+
+nav {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.3em;
+  font-weight: 600;
+  font-style: italic; }
+
+#boton--claro__oscuro {
+  width: 2.5rem;
+  height: auto;
+  background-color: inherit;
+  padding: 0.2rem;
+  border-radius: 25%; }
+
+.boton__modo--claro {
+  border: 2px solid #212529; }
+
+.boton__modo--oscuro {
+  border: 2px solid #f8f9fa; }
 
 .contenedor {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around; }
+
+.card {
+  background-color: inherit; }
