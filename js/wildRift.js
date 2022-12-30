@@ -2,7 +2,6 @@ const wildRiftChampions = [
     {
         id: 1,
         name: "Garen",
-        img: "#",
         damage: 2,
         survive: 3,
         utility: 1,
@@ -21,7 +20,6 @@ const wildRiftChampions = [
     {
         id: 2,
         name: "Ahri",
-        img: "#",
         damage: 3,
         survive: 1,
         utility: 1,
@@ -40,7 +38,6 @@ const wildRiftChampions = [
     {
         id: 3,
         name: "Zed",
-        img: "#",
         damage: 3,
         survive: 1,
         utility: 1,
@@ -60,7 +57,6 @@ const wildRiftChampions = [
     {
         id: 4,
         name: "Jax",
-        img: "#",
         damage: 3,
         survive: 2,
         utility: 1,
@@ -80,7 +76,6 @@ const wildRiftChampions = [
     {
         id: 5,
         name: "Sona",
-        img: "#",
         damage: 2,
         survive: 1,
         utility: 3,
@@ -99,7 +94,6 @@ const wildRiftChampions = [
     {
         id: 6,
         name: "Shyvana",
-        img: "#",
         damage: 3,
         survive: 2,
         utility: 1,
@@ -118,7 +112,6 @@ const wildRiftChampions = [
     {
         id: 7,
         name: "Vi",
-        img: "#",
         damage: 2,
         survive: 2,
         utility: 1,
@@ -137,7 +130,6 @@ const wildRiftChampions = [
     {
         id: 8,
         name: "Jarvan IV",
-        img: "#",
         damage: 2,
         survive: 2,
         utility: 2,
@@ -156,8 +148,7 @@ const wildRiftChampions = [
     },
     {
         id: 9,
-        name: "Dr. Mundo",
-        img: "#",
+        name: "Dr Mundo",
         damage: 2,
         survive: 3,
         utility: 1,
@@ -177,7 +168,6 @@ const wildRiftChampions = [
     {
         id: 10,
         name: "Nasus",
-        img: "#",
         damage: 2,
         survive: 3,
         utility: 1,
@@ -196,7 +186,6 @@ const wildRiftChampions = [
     {
         id: 11,
         name: "Miss Fortune",
-        img: "#",
         damage: 3,
         survive: 1,
         utility: 1,
@@ -215,7 +204,6 @@ const wildRiftChampions = [
     {
         id: 12,
         name: "Master Yi",
-        img: "#",
         damage: 3,
         survive: 1,
         utility: 1,
@@ -234,7 +222,6 @@ const wildRiftChampions = [
     {
         id: 13,
         name: "Graves",
-        img: "#",
         damage: 3,
         survive: 2,
         utility: 1,
@@ -254,7 +241,6 @@ const wildRiftChampions = [
     {
         id: 14,
         name: "Janna",
-        img: "#",
         damage: 1,
         survive: 1,
         utility: 3,
@@ -273,7 +259,6 @@ const wildRiftChampions = [
     {
         id: 15,
         name: "Ashe",
-        img: "#",
         damage: 3,
         survive: 1,
         utility: 1,
@@ -292,7 +277,6 @@ const wildRiftChampions = [
     {
         id: 16,
         name: "Alistar",
-        img: "#",
         damage: 1,
         survive: 3,
         utility: 2,
@@ -311,7 +295,6 @@ const wildRiftChampions = [
     {
         id: 17,
         name: "Malphite",
-        img: "#",
         damage: 1,
         survive: 3,
         utility: 1,
@@ -332,7 +315,6 @@ const wildRiftChampions = [
     {
         id: 18,
         name: "Fizz",
-        img: "#",
         damage: 3,
         survive: 1,
         utility: 1,
@@ -353,7 +335,6 @@ const wildRiftChampions = [
     {
         id: 19,
         name: "Ziggs",
-        img: "#",
         damage: 3,
         survive: 1,
         utility: 1,
@@ -372,7 +353,6 @@ const wildRiftChampions = [
     {
         id: 20,
         name: "Gragas",
-        img: "#",
         damage: 2,
         survive: 3,
         utility: 1,

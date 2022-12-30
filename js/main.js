@@ -1,12 +1,25 @@
+/* Funcion para agregar imagenes de campeones */
+
+/* function agregarImg (array) {
+    array.forEach ( ( champion ) => {
+        const championImg = (`${champion.name}_skin01`).replace( " ", "" ).toLocaleLowerCase()
+        const championImgCorrecta = championImg.replace( " ", "" ).toLocaleLowerCase()
+        console.log(championImg)
+    } )
+}
+agregarImg(wildRiftChampions) */
+
+
 /* Funcion para insertar las tarjetas al HTML desde JS */
 
 function cardAHtml (array) {
     const contenedor = document.querySelector(".contenedor")
     array.forEach ( (element) => {
+        const championImg = (`${element.name}_skin01.jpg`).replace( " ", "" ).toLocaleLowerCase()
         const card = document.createElement ("div")
         card.className = "card"
         card.innerHTML = `
-            <img src=${element.img} class="card-img-top" alt="Imagen ${element.name}">
+            <img src="multimedia/champions/${championImg}" class="card-img-top img--champion" alt="Imagen ${element.name}">
             <div class="card-body">
                 <h3 class="card-title">${element.name}</h3>
                 <p class="card-text">Rol: ${element.rol.join(",<br>")}</p>
@@ -74,17 +87,27 @@ eventoFiltrarPorRol ( jungle, "Jungle" )
 
 const botonModosClaroOscuro = document.querySelector("#boton--claro__oscuro")
 const body = document.querySelector(".modo--claro")
+const header = document.querySelector(".header__modo--claro")
 const nav = document.querySelector("nav")
+const botonHamburguesa = document.querySelector(".navbar-toggler")
+const menuLateralHamburguesa = document.querySelector("#offcanvasDarkNavbar")
+const card = document.querySelectorAll(".card")
 
 /* Funcion para cambiar los modos (es asignado posteriormente a una funcion onclick y a una funcion que evalua info del LocalStore al iniciar o reiniciar la pagina) */
 function cambiarModoClaroOscuro () {
     body.classList.toggle ( "modo--oscuro" )
-    botonModosClaroOscuro.classList.toggle ("boton__modo--oscuro")
+    header.classList.toggle ( "header__modo--oscuro" )
     if ( nav.getAttribute ( "data-bs-theme" ) == "" ) {
         nav.setAttribute ( "data-bs-theme", "dark" )
     } else {
         nav.setAttribute ( "data-bs-theme", "" )
     }
+    botonHamburguesa.classList.toggle ( "boton__hamburguesa--oscuro" )
+    menuLateralHamburguesa.classList.toggle ( "bg-dark" )
+    botonModosClaroOscuro.classList.toggle ("boton__modo--oscuro")
+    card.forEach ( ( element ) => {
+        element.classList.toggle ( "card__modo--oscuro" )
+    } )
 }
 
 /* Funcion para evaluar la key "modoOscuro" en el LocalStore */

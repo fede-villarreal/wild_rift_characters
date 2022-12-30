@@ -8,13 +8,13 @@ body {
 }
 
 .modo--claro{
-    color: $colorOscuro;
-    background-color: $colorClaro;
+    color: $colorFondoYLetraOscuro;
+    background-color: $colorFondoYLetraClaro;
 }
 
 .modo--oscuro{
-    color: $colorClaro;
-    background-color: $colorOscuro;
+    color: $colorFondoYLetraClaro;
+    background-color: $colorFondoYLetraOscuro;
 }
 
 h1,
@@ -31,14 +31,22 @@ h6 {
 h1{
     max-width: 70%;
     margin: 0.3rem;
+    margin-right: 0;
 }
 
 header{
-    background: linear-gradient(130deg, hsl(196, 100%, 60%), hsl(226, 87%, 55%));
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
     @include flexBase(row, wrap, space-between);
     align-items: center;
+}
+
+.header__modo--claro{
+    background: linear-gradient(130deg, $modoClaroColorPrincipal-1, $modoClaroColorPrincipal-2);
+}
+
+.header__modo--oscuro{
+    background: linear-gradient(130deg, $modoOscuroColorPrincipal-1, $modoOscuroColorPrincipal-2);
 }
 
 nav{
@@ -46,6 +54,10 @@ nav{
     font-size: 1.3em;
     font-weight: 600;
     font-style: italic;
+}
+
+.boton__hamburguesa--oscuro{
+    filter: invert(1); /* invierte colores del icono, valores de 0 - 1 */
 }
 
 #boton--claro__oscuro{
@@ -57,17 +69,29 @@ nav{
 }
 
 .boton__modo--claro{
-    border: 2px solid $colorOscuro;
+    border: 2px solid $colorFondoYLetraOscuro;
 }
 
 .boton__modo--oscuro{
-    border: 2px solid $colorClaro;
+    filter: invert(0.75); /* invierte colores del icono, valores de 0 - 1 */
 }
 
 .contenedor{
-    @include flexBase(row, wrap, space-around)
+    @include flexBase(row, wrap, space-evenly)
 }
 
 .card{
-    background-color: inherit;
+    margin: 1.5rem 0.5rem;
+    background: linear-gradient(130deg, $modoClaroColorPrincipal-1, $modoClaroColorPrincipal-2);
+    padding: 7px;
+    border: 0px
+}
+
+.card__modo--oscuro{
+    background: linear-gradient(130deg, $modoOscuroColorPrincipal-1, $modoOscuroColorPrincipal-2);
+}
+
+.img--champion{
+    object-fit: cover;
+    width: 12rem;
 }
