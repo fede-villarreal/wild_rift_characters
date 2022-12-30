@@ -1,15 +1,3 @@
-/* Funcion para agregar imagenes de campeones */
-
-/* function agregarImg (array) {
-    array.forEach ( ( champion ) => {
-        const championImg = (`${champion.name}_skin01`).replace( " ", "" ).toLocaleLowerCase()
-        const championImgCorrecta = championImg.replace( " ", "" ).toLocaleLowerCase()
-        console.log(championImg)
-    } )
-}
-agregarImg(wildRiftChampions) */
-
-
 /* Funcion para insertar las tarjetas al HTML desde JS */
 
 function cardAHtml (array) {
@@ -67,22 +55,6 @@ const support = document.querySelector("#support")
 const jungle = document.querySelector("#jungle")
 
 
-/* Funcion onclick para filtar por rol (primero remueve las tarjetas anterior y luego inserta los Champios de acuerdo a su rol) */
-
-const eventoFiltrarPorRol = ( variable, rolString ) => {
-    variable.onclick = () => {
-        removeCards ()
-        cardAHtml ( filtrarPorRol ( wildRiftChampions, rolString ) )
-    }
-}
-eventoFiltrarPorRol ( allLane, "All Lane" )
-eventoFiltrarPorRol ( soloLane, "Solo Lane" )
-eventoFiltrarPorRol ( midLane, "Mid Lane" )
-eventoFiltrarPorRol ( dragonLane, "Dragon Lane" )
-eventoFiltrarPorRol ( support, "Support" )
-eventoFiltrarPorRol ( jungle, "Jungle" )
-
-
 /* Modo Claro / Modo Oscuro */
 
 const botonModosClaroOscuro = document.querySelector("#boton--claro__oscuro")
@@ -91,7 +63,7 @@ const header = document.querySelector(".header__modo--claro")
 const nav = document.querySelector("nav")
 const botonHamburguesa = document.querySelector(".navbar-toggler")
 const menuLateralHamburguesa = document.querySelector("#offcanvasDarkNavbar")
-const card = document.querySelectorAll(".card")
+
 
 /* Funcion para cambiar los modos (es asignado posteriormente a una funcion onclick y a una funcion que evalua info del LocalStore al iniciar o reiniciar la pagina) */
 function cambiarModoClaroOscuro () {
@@ -105,6 +77,7 @@ function cambiarModoClaroOscuro () {
     botonHamburguesa.classList.toggle ( "boton__hamburguesa--oscuro" )
     menuLateralHamburguesa.classList.toggle ( "bg-dark" )
     botonModosClaroOscuro.classList.toggle ("boton__modo--oscuro")
+    const card = document.querySelectorAll(".card")
     card.forEach ( ( element ) => {
         element.classList.toggle ( "card__modo--oscuro" )
     } )
@@ -133,3 +106,24 @@ function modoClaroOscuroInicial () {
 }
 modoClaroOscuroInicial()
 
+
+/* Funcion onclick para filtar por rol (primero remueve las tarjetas anterior y luego inserta los Champios de acuerdo a su rol) */
+
+const eventoFiltrarPorRol = ( variable, rolString ) => {
+    variable.onclick = () => {
+        removeCards ()
+        cardAHtml ( filtrarPorRol ( wildRiftChampions, rolString ) )
+        const card = document.querySelectorAll(".card")
+        if ( evaluarModoOscuro() == "on" ) {
+            card.forEach ( ( element ) => {
+                element.classList.toggle ( "card__modo--oscuro" )
+            } )
+        }
+    }
+}
+eventoFiltrarPorRol ( allLane, "All Lane" )
+eventoFiltrarPorRol ( soloLane, "Solo Lane" )
+eventoFiltrarPorRol ( midLane, "Mid Lane" )
+eventoFiltrarPorRol ( dragonLane, "Dragon Lane" )
+eventoFiltrarPorRol ( support, "Support" )
+eventoFiltrarPorRol ( jungle, "Jungle" )

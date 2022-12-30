@@ -26,7 +26,9 @@ p {
 
 /* Quita un margen inferior que da Bootstrap en algunos P como links */
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: inherit;
+  font-style: inherit; }
 
 form, input, textarea, select, button, label {
   font-family: inherit;
@@ -62,7 +64,7 @@ h6 {
 h1 {
   max-width: 70%;
   margin: 0.3rem;
-  margin-right: 0; }
+  text-decoration: none; }
 
 header {
   padding: 0.5rem 1rem;
