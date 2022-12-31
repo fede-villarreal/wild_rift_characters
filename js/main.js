@@ -1,5 +1,6 @@
-/* Funcion para insertar las tarjetas al HTML desde JS */
+/* CREACION DE TARJETAS DE HEROE DESDE JS */
 
+/* Funcion para insertar las tarjetas al HTML desde JS */
 function cardAHtml (array) {
     const contenedor = document.querySelector(".contenedor")
     array.forEach ( (element) => {
@@ -20,43 +21,9 @@ function cardAHtml (array) {
 cardAHtml(wildRiftChampions)
 
 
-/* Funcion que retorna una lista filtrada de Champios de acuerdo a su rol */
+/* MODO CLARO / MODO OSCURO */
 
-const filtrarPorRol = ( array, posicion ) => {
-    return array.filter ( ( champion ) => {
-        for (let i = 0; i < champion.rol.length; i++) {
-            if (posicion == "All Lane") {
-                return champion.rol
-            } else if (champion.rol[i] == posicion) {
-                return champion.rol
-            }
-        }
-    } )
-}
-
-
-/* Funcion para remover las tarjetas antiguas (se utiliza dentro de la funcion filtrar por rol) */
-
-const removeCards = () => {
-    let allCards = document.querySelectorAll(".card")
-    allCards.forEach ( ( card ) => {
-        card.remove()
-    } )
-}
-
-
-/* Declaracion de variables DOM de acuerdo al Rol de los Champions */
-
-const allLane = document.querySelector("#all-lane")
-const soloLane = document.querySelector("#solo-lane")
-const midLane = document.querySelector("#mid-lane")
-const dragonLane = document.querySelector("#dragon-lane")
-const support = document.querySelector("#support")
-const jungle = document.querySelector("#jungle")
-
-
-/* Modo Claro / Modo Oscuro */
-
+/* Declaracion de variables desde el DOM */
 const botonModosClaroOscuro = document.querySelector("#boton--claro__oscuro")
 const body = document.querySelector(".modo--claro")
 const header = document.querySelector(".header__modo--claro")
@@ -107,8 +74,46 @@ function modoClaroOscuroInicial () {
 modoClaroOscuroInicial()
 
 
-/* Funcion onclick para filtar por rol (primero remueve las tarjetas anterior y luego inserta los Champios de acuerdo a su rol) */
 
+/* FILTRADO POR ROL DE HEROES */
+
+/* Declaracion de variables DOM de acuerdo al Rol de los Champions */
+const allLane = document.querySelector("#all-lane")
+const soloLane = document.querySelector("#solo-lane")
+const midLane = document.querySelector("#mid-lane")
+const dragonLane = document.querySelector("#dragon-lane")
+const support = document.querySelector("#support")
+const jungle = document.querySelector("#jungle")
+
+
+/* Funcion que retorna una lista filtrada de Champios de acuerdo a su rol */
+const filtrarPorRol = ( array, posicion ) => {
+    return array.filter ( ( champion ) => {
+        for (let i = 0; i < champion.rol.length; i++) {
+            if (posicion == "All Lane") {
+                return champion.rol
+            } else if (champion.rol[i] == posicion) {
+                return champion.rol
+            }
+        }
+    } )
+}
+
+
+/* Funcion para remover las tarjetas antiguas (se utiliza dentro de la funcion filtrar por rol) */
+const removeCards = () => {
+    let allCards = document.querySelectorAll(".card")
+    allCards.forEach ( ( card ) => {
+        card.remove()
+    } )
+}
+
+
+
+
+
+
+/* Funcion onclick para filtar por rol (primero remueve las tarjetas anterior y luego inserta los Champios de acuerdo a su rol), incorpora la modificacion a modo claro / oscuro de las tarjetas de heroes */
 const eventoFiltrarPorRol = ( variable, rolString ) => {
     variable.onclick = () => {
         removeCards ()
