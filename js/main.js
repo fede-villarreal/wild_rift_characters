@@ -6,12 +6,12 @@ function cardAHtml (array) {
     array.forEach ( (element) => {
         const championImg = (`${element.name}_skin01.jpg`).replace( " ", "" ).toLocaleLowerCase()
         const card = document.createElement ("div")
-        card.className = "card"
+        card.className = `card ${element.rol.join(" ").toLowerCase()}`
         card.innerHTML = `
             <img src="multimedia/champions/${championImg}" class="card-img-top img--champion" alt="Imagen ${element.name}">
             <div class="card-body">
                 <h3 class="card-title">${element.name}</h3>
-                <p class="card-text">Rol: ${element.rol.join(",<br>")}</p>
+                <p class="card-text rol">Rol: ${element.rol.join(", <br>")}</p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
         `
@@ -77,7 +77,23 @@ modoClaroOscuroInicial()
 
 /* FILTRADO POR ROL DE HEROES */
 
-/* Declaracion de variables DOM de acuerdo al Rol de los Champions */
+/* Funcion para ocultar todas las tarjetas antiguas (se utiliza dentro de la funcion filtrar por rol) */
+const ocultarCards = () => {
+    let allCards = document.querySelectorAll(".card")
+    allCards.forEach ( ( card ) => {
+        card.style.display = "none"
+    } )
+}
+
+/* Funcion que muestra las cards de los Champios de acuerdo a su rol */
+const filtrarPorRol = ( posicion ) => {
+    const cardsFiltradas = document.querySelectorAll ( posicion )
+    cardsFiltradas.forEach ( ( card ) => {
+        card.style.display = "flex"
+    } )
+}
+
+/* Declaracion de variables DOM con los botones de Rol de los Champions */
 const allLane = document.querySelector("#all-lane")
 const soloLane = document.querySelector("#solo-lane")
 const midLane = document.querySelector("#mid-lane")
@@ -85,50 +101,16 @@ const dragonLane = document.querySelector("#dragon-lane")
 const support = document.querySelector("#support")
 const jungle = document.querySelector("#jungle")
 
-
-/* Funcion que retorna una lista filtrada de Champios de acuerdo a su rol */
-const filtrarPorRol = ( array, posicion ) => {
-    return array.filter ( ( champion ) => {
-        for (let i = 0; i < champion.rol.length; i++) {
-            if (posicion == "All Lane") {
-                return champion.rol
-            } else if (champion.rol[i] == posicion) {
-                return champion.rol
-            }
-        }
-    } )
-}
-
-
-/* Funcion para remover las tarjetas antiguas (se utiliza dentro de la funcion filtrar por rol) */
-const removeCards = () => {
-    let allCards = document.querySelectorAll(".card")
-    allCards.forEach ( ( card ) => {
-        card.remove()
-    } )
-}
-
-
-
-
-
-
-/* Funcion onclick para filtar por rol (primero remueve las tarjetas anterior y luego inserta los Champios de acuerdo a su rol), incorpora la modificacion a modo claro / oscuro de las tarjetas de heroes */
-const eventoFiltrarPorRol = ( variable, rolString ) => {
+/* Funcion onclick para filtar por rol (primero oculta todas las tarjetas y luego muestra las tarjetas de los Champios del rol seleccionado) */
+const eventoFiltrarPorRol = ( variable, posicion) => {
     variable.onclick = () => {
-        removeCards ()
-        cardAHtml ( filtrarPorRol ( wildRiftChampions, rolString ) )
-        const card = document.querySelectorAll(".card")
-        if ( evaluarModoOscuro() == "on" ) {
-            card.forEach ( ( element ) => {
-                element.classList.toggle ( "card__modo--oscuro" )
-            } )
-        }
+        ocultarCards ()
+        filtrarPorRol ( posicion )
     }
 }
-eventoFiltrarPorRol ( allLane, "All Lane" )
-eventoFiltrarPorRol ( soloLane, "Solo Lane" )
-eventoFiltrarPorRol ( midLane, "Mid Lane" )
-eventoFiltrarPorRol ( dragonLane, "Dragon Lane" )
-eventoFiltrarPorRol ( support, "Support" )
-eventoFiltrarPorRol ( jungle, "Jungle" )
+eventoFiltrarPorRol ( allLane, ".card" )
+eventoFiltrarPorRol ( soloLane, ".solo-lane" )
+eventoFiltrarPorRol ( midLane, ".mid-lane" )
+eventoFiltrarPorRol ( dragonLane, ".dragon-lane" )
+eventoFiltrarPorRol ( support, ".support" )
+eventoFiltrarPorRol ( jungle, ".jungle" )

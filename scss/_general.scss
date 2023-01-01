@@ -84,7 +84,10 @@ nav{
     margin: 1.5rem 0.5rem;
     background: linear-gradient(130deg, $modoClaroColorPrincipal-1, $modoClaroColorPrincipal-2);
     padding: 7px;
-    border: 0px
+    border: 0px;
+    width: 40%;
+    min-width: 10rem;
+    max-width: 12rem;
 }
 
 .card__modo--oscuro{
@@ -93,5 +96,4 @@ nav{
 
 .img--champion{
     object-fit: cover;
-    width: 12rem;
 }
