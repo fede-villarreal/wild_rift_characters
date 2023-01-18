@@ -21,6 +21,15 @@ function cardAHtml (array) {
 cardAHtml(wildRiftChampions)
 
 
+// TRAER EL ARCHIVO JSON DONDE SE ENCUENTRAN LOS CHAMPIONS Y CREAR CON ELLOS LAS CARDS
+
+
+fetch("wildrift.json")
+.then( res => res.json())
+.then( data => console.log(data))
+
+
+
 /* MODO CLARO / MODO OSCURO */
 
 /* Declaracion de variables desde el DOM */
