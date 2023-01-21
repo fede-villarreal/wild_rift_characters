@@ -1,6 +1,23 @@
+// TRAER EL ARCHIVO JSON DONDE SE ENCUENTRAN LOS CHAMPIONS y EJECUCION DE FUNCIONES (el modo oscuro se ejecuta aqui tambien porque modifica la clase de las cards, entonces requiere que las mismas esten creadas)
+
+fetch("json/wildrift.json")
+.then( res => res.json())
+.then( (data) => {
+    cardAHtml(data)
+    modoClaroOscuroInicial()
+    eventoFiltrarPorRol ( allLane, ".card" )
+    eventoFiltrarPorRol ( soloLane, ".solo-lane" )
+    eventoFiltrarPorRol ( midLane, ".mid-lane" )
+    eventoFiltrarPorRol ( dragonLane, ".dragon-lane" )
+    eventoFiltrarPorRol ( support, ".support" )
+    eventoFiltrarPorRol ( jungle, ".jungle" )
+})
+.catch( error => console.log("salio mal"))
+
+
 /* CREACION DE TARJETAS DE HEROE DESDE JS */
 
-/* Funcion para insertar las tarjetas al HTML desde JS */
+/* Funcion para insertar las tarjetas al HTML desde JS. ESTA FUNCION SE EJECUTA EN EL FETCH INICIAL */
 function cardAHtml (array) {
     const contenedor = document.querySelector(".contenedor")
     array.forEach ( (element) => {
@@ -18,16 +35,6 @@ function cardAHtml (array) {
         contenedor.appendChild(card)
     });
 }
-cardAHtml(wildRiftChampions)
-
-
-// TRAER EL ARCHIVO JSON DONDE SE ENCUENTRAN LOS CHAMPIONS Y CREAR CON ELLOS LAS CARDS
-
-
-fetch("wildrift.json")
-.then( res => res.json())
-.then( data => console.log(data))
-
 
 
 /* MODO CLARO / MODO OSCURO */
@@ -39,7 +46,6 @@ const header = document.querySelector(".header__modo--claro")
 const nav = document.querySelector("nav")
 const botonHamburguesa = document.querySelector(".navbar-toggler")
 const menuLateralHamburguesa = document.querySelector("#offcanvasDarkNavbar")
-
 
 /* Funcion para cambiar los modos (es asignado posteriormente a una funcion onclick y a una funcion que evalua info del LocalStore al iniciar o reiniciar la pagina) */
 function cambiarModoClaroOscuro () {
@@ -74,14 +80,12 @@ botonModosClaroOscuro.onclick = () => {
     }
 }
 
-/* Funcion que se ocupa de evaluar al cargar la pagina si quedo guardado el modo oscuro, de ser asi lo vuelve a aplicar */
+/* Funcion que se ocupa de evaluar al cargar la pagina si quedo guardado el modo oscuro, de ser asi lo vuelve a aplicar. ESTA FUNCION SE EJECUTA EN EL FETCH INICIAL */
 function modoClaroOscuroInicial () {
     if ( evaluarModoOscuro() == "on" ) {
         cambiarModoClaroOscuro()
     }
 }
-modoClaroOscuroInicial()
-
 
 
 /* FILTRADO POR ROL DE HEROES */
@@ -110,16 +114,11 @@ const dragonLane = document.querySelector("#dragon-lane")
 const support = document.querySelector("#support")
 const jungle = document.querySelector("#jungle")
 
-/* Funcion onclick para filtar por rol (primero oculta todas las tarjetas y luego muestra las tarjetas de los Champios del rol seleccionado) */
+/* Funcion onclick para filtar por rol (primero oculta todas las tarjetas y luego muestra las tarjetas de los Champios del rol seleccionado). ESTA FUNCION SE EJECUTA EN EL FETCH INICIAL */
 const eventoFiltrarPorRol = ( variable, posicion) => {
     variable.onclick = () => {
         ocultarCards ()
         filtrarPorRol ( posicion )
     }
 }
-eventoFiltrarPorRol ( allLane, ".card" )
-eventoFiltrarPorRol ( soloLane, ".solo-lane" )
-eventoFiltrarPorRol ( midLane, ".mid-lane" )
-eventoFiltrarPorRol ( dragonLane, ".dragon-lane" )
-eventoFiltrarPorRol ( support, ".support" )
-eventoFiltrarPorRol ( jungle, ".jungle" )
+
