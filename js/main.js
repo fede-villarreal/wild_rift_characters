@@ -4,15 +4,15 @@ fetch("json/wildrift.json")
 .then( res => res.json())
 .then( (data) => {
     cardAHtml(data)
-    modoClaroOscuroInicial()
+    modoClaroOscuroInicialCards()
     eventoFiltrarPorRol ( allLane, ".card" )
     eventoFiltrarPorRol ( soloLane, ".solo-lane" )
     eventoFiltrarPorRol ( midLane, ".mid-lane" )
     eventoFiltrarPorRol ( dragonLane, ".dragon-lane" )
     eventoFiltrarPorRol ( support, ".support" )
     eventoFiltrarPorRol ( jungle, ".jungle" )
+    addFavorite(data)
 })
-.catch( error => console.log("salio mal"))
 
 
 /* CREACION DE TARJETAS DE HEROE DESDE JS */
@@ -26,10 +26,10 @@ function cardAHtml (array) {
         card.className = `card ${element.rol.join(" ").toLowerCase()}`
         card.innerHTML = `
             <img src="multimedia/champions/${championImg}" class="card-img-top img--champion" alt="Imagen ${element.name}">
-            <div class="card-body">
+            <div class="card-body d-flex flex-column justify-content-between">
                 <h3 class="card-title">${element.name}</h3>
                 <p class="card-text rol">Rol: ${element.rol.join(", <br>")}</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <button id="button__favorite--${element.id}" class="btn btn-primary align-self-center button__allCards">Add Favorite</button>
             </div>
         `
         contenedor.appendChild(card)
@@ -59,6 +59,10 @@ function cambiarModoClaroOscuro () {
     botonHamburguesa.classList.toggle ( "boton__hamburguesa--oscuro" )
     menuLateralHamburguesa.classList.toggle ( "bg-dark" )
     botonModosClaroOscuro.classList.toggle ("boton__modo--oscuro")
+}
+
+/* Funcion para cambiar los modos Claro/Oscuro de las cards */
+function cambiarModoClaroOscuroCards () {
     const card = document.querySelectorAll(".card")
     card.forEach ( ( element ) => {
         element.classList.toggle ( "card__modo--oscuro" )
@@ -73,6 +77,7 @@ const evaluarModoOscuro = () => {
 /* Funcion evento que cambia los modos claro/oscuro y modifica la info del LocalStore previa una evaluación */
 botonModosClaroOscuro.onclick = () => {
     cambiarModoClaroOscuro()
+    cambiarModoClaroOscuroCards()
     if ( evaluarModoOscuro() == "on" ) {
         localStorage.setItem ( "modoOscuro", "off" )
     } else {
@@ -80,10 +85,18 @@ botonModosClaroOscuro.onclick = () => {
     }
 }
 
-/* Funcion que se ocupa de evaluar al cargar la pagina si quedo guardado el modo oscuro, de ser asi lo vuelve a aplicar. ESTA FUNCION SE EJECUTA EN EL FETCH INICIAL */
+/* Funcion que se ocupa de evaluar al cargar la pagina si quedo guardado el modo oscuro, de ser asi lo vuelve a aplicar. */
 function modoClaroOscuroInicial () {
     if ( evaluarModoOscuro() == "on" ) {
         cambiarModoClaroOscuro()
+    }
+}
+modoClaroOscuroInicial()
+
+/* Funcion que se ocupa de evaluar al cargar la pagina si quedo guardado el modo oscuro, de ser asi lo vuelve a aplicar a las cards. ESTA FUNCION SE EJECUTA EN EL FETCH INICIAL */
+function modoClaroOscuroInicialCards () {
+    if ( evaluarModoOscuro() == "on" ) {
+        cambiarModoClaroOscuroCards()
     }
 }
 
@@ -122,3 +135,48 @@ const eventoFiltrarPorRol = ( variable, posicion) => {
     }
 }
 
+
+/* AGREGAR HEROES A FAVORITOS */
+
+let heroesFavoritos = []
+
+function addFavorite (array) {
+    const buttonAllCards = document.querySelectorAll(".button__allCards")
+    buttonAllCards.forEach ( (boton) => {
+        boton.onclick = () => {
+            const id = boton.id.slice(18)
+            const filtrarChampions = array.find ( ( element ) => {
+                return element.id === Number(id)
+            } )
+            const existe = heroesFavoritos.some ( heroe => heroe.id === Number(id) )
+            if (existe) {
+                Toastify({
+                    text: "This champion is already in favorites",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    style: {
+                        background: "linear-gradient(to right, #fca311, #ef233c)",
+                    },
+                }).showToast();
+            } else {
+                heroesFavoritos.push(filtrarChampions)
+                localStorage.setItem ( "favoritos", JSON.stringify ( heroesFavoritos ) )
+                Toastify({
+                    text: "Added to favorites",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    },
+                }).showToast();
+            }
+        }
+    } )
+}
+
+const heroesElegidos = JSON.parse ( localStorage.getItem ( "favoritos" ) )
+heroesFavoritos = heroesElegidos || []
